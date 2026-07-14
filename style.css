@@ -1,462 +1,12 @@
-/**
- * ==========================================================================
- * CREATIVE MEDIA & DESIGN 101 - INTERACTIVE BEHAVIORS
- * ==========================================================================
- * This script controls all the visual interactions on the webpage,
- * including:
- *   1. Responsive Mobile Navigation Toggle
- *   2. Interactive Student Work Filters
- *   3. Syllabus Week tab panels
- * ==========================================================================
- */
-document.addEventListener('DOMContentLoaded', () => {
-    /* ==========================================================================
-       1. RESPONSIVE MOBILE NAVIGATION
-       ========================================================================== */
-    const mobileNavToggle = document.getElementById('mobileNavToggle');
-    const navMenu = document.getElementById('navMenu');
-    if (mobileNavToggle && navMenu) {
-        mobileNavToggle.addEventListener('click', () => {
-            // Toggle the open class which slides the menu down/up in CSS
-            navMenu.classList.toggle('open');
-
-            // Optional styling: change color of hamburger button when open
-            mobileNavToggle.classList.toggle('active');
-        });
-        // Close the mobile menu automatically if a navigation link is clicked
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('open');
-                mobileNavToggle.classList.remove('active');
-            });
-        });
-    }
-    /* ==========================================================================
-       2. STUDENT PORTFOLIO FILTER
-       ========================================================================== */
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove 'active' class from all buttons and add to the clicked one
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            const filterValue = button.getAttribute('data-filter');
-            galleryItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                // If filter is 'all' or matches the item's category, show it. Otherwise hide it.
-                if (filterValue === 'all' || category === filterValue) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-        });
-    });
-    /* ==========================================================================
-       3. INTERACTIVE SYLLABUS TABS
-       ========================================================================== */
-    const weekTabs = document.querySelectorAll('.week-tab');
-    const weekPanels = document.querySelectorAll('.week-panel');
-    weekTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Remove active status from all tabs and add it to the clicked one
-            weekTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            const selectedWeek = tab.getAttribute('data-week');
-            // Hide all syllabus content panels
-            weekPanels.forEach(panel => {
-                panel.classList.remove('active');
-            });
-            // Show the panel matching the clicked week's number
-            const targetPanel = document.getElementById(`week-${selectedWeek}`);
-            if (targetPanel) {
-                targetPanel.classList.add('active');
-            }
-        });
-    });
-});
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Media & Design 101 | Class Portal</title>
-
-    <!-- Meta tags for basic SEO -->
-    <meta name="description" content="Official course portal for Creative Media & Design 101. View the syllabus, announcements, resources, and showcase gallery.">
-
-    <!-- Google Fonts: Fraunces (Retro Serif) & Space Grotesk (Modern Geometric Sans) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-
-    <!-- Link to the external stylesheet -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- 1. HEADER & NAVIGATION -->
-    <header class="site-header">
-        <div class="header-container">
-            <a href="#" class="logo">
-                <span class="logo-circle"></span>
-                Creative Media 101
-            </a>
-
-            <!-- Mobile Menu Toggle Button (Visible on small screens) -->
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" id="mobileNavToggle">
-                <svg viewBox="0 0 24 24" width="24" height="24">
-                    <line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button>
-
-            <!-- Navigation Links -->
-            <nav class="nav-menu" id="navMenu">
-                <ul>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                    <li><a href="#syllabus" class="nav-link">Syllabus</a></li>
-                    <li><a href="#resources" class="nav-link">Resources</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <!-- 2. HERO SECTION -->
-    <section class="hero-section" id="about">
-        <div class="hero-container">
-            <div class="hero-content">
-                <span class="hero-badge">Art &amp; Digital Media Portal</span>
-                <h1 class="hero-title">Where art meets the digital edge.</h1>
-                <p class="hero-subtitle">
-                    Welcome to the central hub for Creative Media &amp; Design 101. Here, we explore the intersections of film photography, graphic layouts, and digital storytelling. Browse student creations, track course schedules, and find weekly resources.
-                </p>
-                <div class="hero-actions">
-                    <a href="#gallery" class="btn btn-primary">View Student Work</a>
-                    <a href="#syllabus" class="btn btn-secondary">Explore Syllabus</a>
-                </div>
-            </div>
-
-            <!-- Hero Retro Graphic Overlay -->
-            <div class="hero-visual">
-                <div class="retro-card hero-image-card">
-                    <img src="assets/camera.jpg" alt="Vintage 35mm camera on desk" class="hero-img">
-                    <div class="card-tag">Exhibition Unit 01</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- 3. CLASS QUICK-INFO SECTION -->
-    <section class="quick-info-section">
-        <div class="grid-container">
-            <!-- Card 1: Schedule -->
-            <div class="retro-card info-card bg-teal">
-                <div class="info-icon">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                        <line x1="16" y1="2" x2="16" y2="6"/>
-                        <line x1="8" y1="2" x2="8" y2="6"/>
-                        <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                </div>
-                <h3>Class Times</h3>
-                <p>Tuesdays &amp; Thursdays</p>
-                <p class="text-mute">2:00 PM – 3:30 PM</p>
-            </div>
-
-            <!-- Card 2: Location -->
-            <div class="retro-card info-card bg-orange">
-                <div class="info-icon">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
-                    </svg>
-                </div>
-                <h3>Studio Lab</h3>
-                <p>Fine Arts Building</p>
-                <p class="text-mute">Room 404 (Digital Lab)</p>
-            </div>
-
-            <!-- Card 3: Instructor -->
-            <div class="retro-card info-card bg-yellow">
-                <div class="info-icon">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                        <circle cx="12" cy="7" r="4"/>
-                    </svg>
-                </div>
-                <h3>Instructor</h3>
-                <p>Prof. Michon Herman</p>
-                <p class="text-mute">m.herman@academy.edu</p>
-            </div>
-        </div>
-    </section>
-    <!-- 4. STUDENT GALLERY (WITH FILTERS) -->
-    <section class="gallery-section" id="gallery">
-        <div class="section-header text-center">
-            <span class="section-tag">Showcase</span>
-            <h2 class="section-title">Student Portfolio Exhibition</h2>
-            <p class="section-desc">A selection of highlight projects created during the semester across photography, graphic layouts, and digital media.</p>
-
-            <!-- Filter Controls -->
-            <div class="gallery-filters">
-                <button class="filter-btn active" data-filter="all">All Work</button>
-                <button class="filter-btn" data-filter="photography">Photography</button>
-                <button class="filter-btn" data-filter="graphic">Graphic Design</button>
-            </div>
-        </div>
-
-        <div class="gallery-grid" id="galleryGrid">
-            <!-- Project 1: Photography -->
-            <div class="gallery-item retro-card" data-category="photography">
-                <div class="gallery-img-wrapper">
-                    <img src="assets/photo.jpg" alt="Retro architectural facade study">
-                </div>
-                <div class="gallery-info">
-                    <span class="item-tag tag-photography">Photography</span>
-                    <h4 class="item-title">"Geometric Facades"</h4>
-                    <p class="item-author">By Sarah Jenkins</p>
-                    <p class="item-desc">A study of shadows and mid-century architecture captured on 35mm analog film.</p>
-                </div>
-            </div>
-
-            <!-- Project 2: Graphic Design -->
-            <div class="gallery-item retro-card" data-category="graphic">
-                <div class="gallery-img-wrapper">
-                    <img src="assets/graphic.jpg" alt="Abstract color fields and shapes poster">
-                </div>
-                <div class="gallery-info">
-                    <span class="item-tag tag-graphic">Graphic Design</span>
-                    <h4 class="item-title">"Interlocking Forms"</h4>
-                    <p class="item-author">By Leo Ramirez</p>
-                    <p class="item-desc">Poster series exploring color relationships and vintage screenprint textures.</p>
-                </div>
-            </div>
-
-            <!-- Project 3: Photography -->
-            <div class="gallery-item retro-card" data-category="photography">
-                <div class="gallery-img-wrapper">
-                    <img src="assets/camera.jpg" alt="Retro camera layout close-up">
-                </div>
-                <div class="gallery-info">
-                    <span class="item-tag tag-photography">Photography</span>
-                    <h4 class="item-title">"The Tool of the Craft"</h4>
-                    <p class="item-author">By Maya Lin</p>
-                    <p class="item-desc">An analog still-life study examining the aesthetic qualities of vintage photography gear.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- 5. SYLLABUS TIMELINE -->
-    <section class="syllabus-section" id="syllabus">
-        <div class="section-header text-center">
-            <span class="section-tag">Schedule</span>
-            <h2 class="section-title">Course Syllabus &amp; Journey</h2>
-            <p class="section-desc">Click on each week below to view the topics, reading assignments, and weekly projects we will tackle.</p>
-        </div>
-
-        <div class="syllabus-container retro-card">
-            <!-- Sidebar Navigation for Weeks -->
-            <div class="syllabus-sidebar">
-                <button class="week-tab active" data-week="1">
-                    <span class="tab-num">W01</span>
-                    <span class="tab-label">Foundations &amp; Form</span>
-                </button>
-                <button class="week-tab" data-week="2">
-                    <span class="tab-num">W02</span>
-                    <span class="tab-label">Color Theory &amp; Tone</span>
-                </button>
-                <button class="week-tab" data-week="3">
-                    <span class="tab-num">W03</span>
-                    <span class="tab-label">Typography &amp; Layout</span>
-                </button>
-                <button class="week-tab" data-week="4">
-                    <span class="tab-num">W04</span>
-                    <span class="tab-label">Analog to Digital</span>
-                </button>
-            </div>
-
-            <!-- Main Content Panels for Weeks -->
-            <div class="syllabus-content">
-                <!-- Week 1 Content -->
-                <div class="week-panel active" id="week-1">
-                    <div class="panel-header">
-                        <h3>Week 1: Foundations of Composition</h3>
-                        <span class="panel-badge">August 25 – August 29</span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Class Focus:</h4>
-                        <p>An introduction to the elements of design: point, line, plane, volume, and visual balance. We will discuss rules of framing, leading lines, and dynamic diagonals.</p>
-
-                        <div class="panel-grid">
-                            <div class="panel-col">
-                                <h5>Reading &amp; Prep</h5>
-                                <ul>
-                                    <li>"Design Systems 101" – Chapter 1</li>
-                                    <li>Composition basics handbook (PDF)</li>
-                                </ul>
-                            </div>
-                            <div class="panel-col">
-                                <h5>Assignment #1</h5>
-                                <p><strong>Rule of Thirds Study:</strong> Capture 5 images focusing on asymmetrical balance using framing.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Week 2 Content -->
-                <div class="week-panel" id="week-2">
-                    <div class="panel-header">
-                        <h3>Week 2: Color Theory &amp; Vintage Tone</h3>
-                        <span class="panel-badge">September 1 – September 5</span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Class Focus:</h4>
-                        <p>Understanding additive vs. subtractive color models, complementary combinations, and the psychological impact of color palettes. Special focus on retro film color grading.</p>
-
-                        <div class="panel-grid">
-                            <div class="panel-col">
-                                <h5>Reading &amp; Prep</h5>
-                                <ul>
-                                    <li>"Interaction of Color" by Josef Albers</li>
-                                    <li>Video: Working with Analog Color Profiles</li>
-                                </ul>
-                            </div>
-                            <div class="panel-col">
-                                <h5>Assignment #2</h5>
-                                <p><strong>Retro Swatches:</strong> Design a digital poster utilizing a restricted 4-color palette inspired by the 1970s.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Week 3 Content -->
-                <div class="week-panel" id="week-3">
-                    <div class="panel-header">
-                        <h3>Week 3: Editorial Typography &amp; Layout</h3>
-                        <span class="panel-badge">September 8 – September 12</span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Class Focus:</h4>
-                        <p>Exploring the history of typography, hierarchy, readability, and structural grids. How to pair classic serif headings with clean modern sans-serif body text.</p>
-
-                        <div class="panel-grid">
-                            <div class="panel-col">
-                                <h5>Reading &amp; Prep</h5>
-                                <ul>
-                                    <li>"Thinking with Type" by Ellen Lupton</li>
-                                    <li>Web Typography Guidelines resource list</li>
-                                </ul>
-                            </div>
-                            <div class="panel-col">
-                                <h5>Assignment #3</h5>
-                                <p><strong>Magazine Page Layout:</strong> Recreate a premium layout combining a portrait photograph and headline text.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Week 4 Content -->
-                <div class="week-panel" id="week-4">
-                    <div class="panel-header">
-                        <h3>Week 4: Analog to Digital Workflow</h3>
-                        <span class="panel-badge">September 15 – September 19</span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Class Focus:</h4>
-                        <p>Scanning physical media, cleaning film grain, and translating analog graphic layouts into lightweight web pages. How to publish assets properly.</p>
-
-                        <div class="panel-grid">
-                            <div class="panel-col">
-                                <h5>Reading &amp; Prep</h5>
-                                <ul>
-                                    <li>Digitization guidelines &amp; file compression</li>
-                                    <li>GitHub Pages deployment documentation</li>
-                                </ul>
-                            </div>
-                            <div class="panel-col">
-                                <h5>Assignment #4</h5>
-                                <p><strong>Deploy Web Showcase:</strong> Upload your photography project and display it publicly on GitHub.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- 6. RESOURCES & ANNOUNCEMENTS -->
-    <section class="resources-section" id="resources">
-        <div class="grid-container">
-            <!-- Left Column: Announcements -->
-            <div class="retro-card announcement-board bg-cream">
-                <h3 class="card-title">Class Announcements</h3>
-                <ul class="announcements-list">
-                    <li>
-                        <span class="date">Jul 07</span>
-                        <h5>Exhibition Lab Setup</h5>
-                        <p>Please make sure you have created your GitHub accounts before Tuesday's session so we can deploy our class portfolios.</p>
-                    </li>
-                    <li>
-                        <span class="date">Jul 01</span>
-                        <h5>Film Cameras Available</h5>
-                        <p>The equipment room has three 35mm film cameras available for checkout. Reserve via the school portal.</p>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Right Column: Resources -->
-            <div class="retro-card resources-board bg-cream">
-                <h3 class="card-title">Helpful Tools &amp; Links</h3>
-                <ul class="resources-list">
-                    <li>
-                        <a href="https://fonts.google.com" target="_blank" rel="noopener">
-                            <span class="icon">🔤</span>
-                            <div class="link-info">
-                                <h5>Google Fonts</h5>
-                                <p>Find and customize typography for your projects.</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://unsplash.com" target="_blank" rel="noopener">
-                            <span class="icon">📷</span>
-                            <div class="link-info">
-                                <h5>Unsplash</h5>
-                                <p>High-quality, royalty-free photography for designs.</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://pages.github.com" target="_blank" rel="noopener">
-                            <span class="icon">🚀</span>
-                            <div class="link-info">
-                                <h5>GitHub Pages Guide</h5>
-                                <p>Official documentation for hosting static websites.</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <!-- 7. FOOTER -->
-    <footer class="site-footer">
-        <div class="footer-container">
-            <p>&copy; 2026 Creative Media &amp; Design 101. Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>.</p>
-            <p>Made with 🧡 under the instruction of Prof. Michon Herman</p>
-        </div>
-    </footer>
-    <!-- JavaScript script for interactive filters and syllabus navigation -->
-    <script src="app.js"></script>
-</body>
-</html>
-/*
+/* 
    ==========================================================================
    CREATIVE MEDIA & DESIGN 101 - STYLE SYSTEM
    ==========================================================================
    Theme: Retro - Mix of Vibrant and Earthy Colors (Mid-Century Modern)
    Author: Antigravity Code Assistant
-   ==========================================================================
+   ========================================================================== 
 */
+
 /* --------------------------------------------------------------------------
    1. DESIGN TOKENS (CSS VARIABLES)
    -------------------------------------------------------------------------- */
@@ -466,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     --clr-card-bg: #fffdf9;      /* Crisp warm paper color for cards */
     --clr-text: #2d2420;         /* Deep chocolate charcoal (high contrast, softer than pure black) */
     --clr-text-light: #6b5c54;   /* Muted chocolate brown for secondary text */
-
+    
     /* Brand Accents */
     --clr-orange: #d96338;       /* Burnt Terracotta (Earthy Primary) */
     --clr-orange-light: #f7ede8; /* Soft Terracotta tint */
@@ -475,26 +25,27 @@ document.addEventListener('DOMContentLoaded', () => {
     --clr-yellow: #ebb136;       /* Mustard Yellow (Warm Highlight) */
     --clr-yellow-light: #fdf6e6; /* Soft Yellow tint */
     --clr-green: #597c56;        /* Olive Green (Earthy Accent) */
-
+    
     /* Typography */
     --ff-display: 'Fraunces', Georgia, serif;
     --ff-body: 'Space Grotesk', system-ui, sans-serif;
-
+    
     /* Borders & Offsets */
     --border-width: 3px;
     --border-color: #2d2420;
     --border-radius-sm: 8px;
     --border-radius-md: 16px;
-
+    
     /* Neo-Brutalist Shadow Styles */
     --shadow-offset-sm: 4px 4px 0px var(--clr-text);
     --shadow-offset-md: 8px 8px 0px var(--clr-text);
     --shadow-offset-hover: 2px 2px 0px var(--clr-text);
-
+    
     /* Animations */
     --transition-speed: 0.25s;
     --ease-retro: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 /* --------------------------------------------------------------------------
    2. RESET & BASE STYLES
    -------------------------------------------------------------------------- */
@@ -503,10 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
     margin: 0;
     padding: 0;
 }
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
 }
+
 body {
     background-color: var(--clr-bg);
     color: var(--clr-text);
@@ -515,6 +68,7 @@ body {
     overflow-x: hidden;
     padding-top: 80px; /* Offset for sticky header */
 }
+
 /* Typography elements */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--ff-display);
@@ -522,19 +76,23 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.15;
     color: var(--clr-text);
 }
+
 p {
     font-weight: 400;
     font-size: 1.05rem;
 }
+
 a {
     color: var(--clr-orange);
     text-decoration: none;
     font-weight: 600;
     transition: color var(--transition-speed) ease;
 }
+
 a:hover {
     color: var(--clr-teal);
 }
+
 /* Utility Containers */
 .grid-container {
     display: grid;
@@ -544,13 +102,16 @@ a:hover {
     margin: 0 auto;
     padding: 2rem;
 }
+
 .text-center {
     text-align: center;
 }
+
 .text-mute {
     color: var(--clr-text-light);
     font-size: 0.95rem;
 }
+
 /* --------------------------------------------------------------------------
    3. NEO-BRUTALIST BUTTONS & CARDS
    -------------------------------------------------------------------------- */
@@ -559,15 +120,17 @@ a:hover {
     border: var(--border-width) solid var(--border-color);
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-offset-md);
-    transition: transform var(--transition-speed) var(--ease-retro),
+    transition: transform var(--transition-speed) var(--ease-retro), 
                 box-shadow var(--transition-speed) var(--ease-retro);
     overflow: hidden;
 }
+
 /* Card Hover translation effect */
 .retro-card:hover {
     transform: translate(4px, 4px);
     box-shadow: var(--shadow-offset-hover);
 }
+
 /* Colored Card Variants */
 .retro-card.bg-teal {
     background-color: var(--clr-teal-light);
@@ -581,6 +144,7 @@ a:hover {
 .retro-card.bg-cream {
     background-color: var(--clr-card-bg);
 }
+
 /* Buttons */
 .btn {
     display: inline-flex;
@@ -594,28 +158,34 @@ a:hover {
     border-radius: var(--border-radius-sm);
     cursor: pointer;
     box-shadow: var(--shadow-offset-sm);
-    transition: transform var(--transition-speed) var(--ease-retro),
+    transition: transform var(--transition-speed) var(--ease-retro), 
                 box-shadow var(--transition-speed) var(--ease-retro),
                 background-color var(--transition-speed) ease;
 }
+
 .btn:active {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0px var(--clr-text);
 }
+
 .btn-primary {
     background-color: var(--clr-orange);
     color: var(--clr-bg);
 }
+
 .btn-primary:hover {
     background-color: #c2522a; /* Slightly darker terracotta */
 }
+
 .btn-secondary {
     background-color: var(--clr-yellow);
     color: var(--clr-text);
 }
+
 .btn-secondary:hover {
     background-color: #d69e2c; /* Slightly darker mustard */
 }
+
 /* --------------------------------------------------------------------------
    4. NAVIGATION BAR
    -------------------------------------------------------------------------- */
@@ -631,6 +201,7 @@ a:hover {
     display: flex;
     align-items: center;
 }
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -640,6 +211,7 @@ a:hover {
     margin: 0 auto;
     padding: 0 2rem;
 }
+
 .logo {
     font-family: var(--ff-display);
     font-weight: 900;
@@ -649,6 +221,7 @@ a:hover {
     align-items: center;
     gap: 0.75rem;
 }
+
 .logo-circle {
     width: 24px;
     height: 24px;
@@ -657,11 +230,13 @@ a:hover {
     border-radius: 50%;
     display: inline-block;
 }
+
 .nav-menu ul {
     list-style: none;
     display: flex;
     gap: 2rem;
 }
+
 .nav-link {
     color: var(--clr-text);
     font-weight: 700;
@@ -669,6 +244,7 @@ a:hover {
     padding: 0.5rem 0;
     position: relative;
 }
+
 .nav-link::after {
     content: '';
     position: absolute;
@@ -679,9 +255,11 @@ a:hover {
     background-color: var(--clr-teal);
     transition: width var(--transition-speed) ease;
 }
+
 .nav-link:hover::after {
     width: 100%;
 }
+
 /* Mobile Nav Toggle */
 .mobile-nav-toggle {
     display: none;
@@ -690,6 +268,7 @@ a:hover {
     cursor: pointer;
     color: var(--clr-text);
 }
+
 /* --------------------------------------------------------------------------
    5. HERO SECTION
    -------------------------------------------------------------------------- */
@@ -698,6 +277,7 @@ a:hover {
     position: relative;
     overflow: hidden;
 }
+
 .hero-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -706,6 +286,7 @@ a:hover {
     gap: 4rem;
     align-items: center;
 }
+
 .hero-badge {
     display: inline-block;
     background-color: var(--clr-teal-light);
@@ -717,20 +298,24 @@ a:hover {
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
 }
+
 .hero-title {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
 }
+
 .hero-subtitle {
     font-size: 1.2rem;
     color: var(--clr-text-light);
     margin-bottom: 2rem;
     max-width: 600px;
 }
+
 .hero-actions {
     display: flex;
     gap: 1.5rem;
 }
+
 /* Hero image offset layout */
 .hero-visual {
     position: relative;
@@ -738,11 +323,13 @@ a:hover {
     justify-content: center;
     align-items: center;
 }
+
 .hero-image-card {
     position: relative;
     max-width: 100%;
     transform: rotate(3deg);
 }
+
 .hero-img {
     width: 100%;
     height: auto;
@@ -750,6 +337,7 @@ a:hover {
     object-fit: cover;
     aspect-ratio: 1 / 1;
 }
+
 .card-tag {
     position: absolute;
     bottom: 1rem;
@@ -761,18 +349,21 @@ a:hover {
     font-weight: 700;
     font-size: 0.85rem;
 }
+
 /* --------------------------------------------------------------------------
    6. QUICK INFO STYLES
    -------------------------------------------------------------------------- */
 .quick-info-section {
     padding: 2rem 0;
 }
+
 .info-card {
     padding: 2.5rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+
 .info-icon {
     width: 48px;
     height: 48px;
@@ -784,9 +375,11 @@ a:hover {
     justify-content: center;
     color: var(--clr-text);
 }
+
 .info-card h3 {
     font-size: 1.6rem;
 }
+
 /* --------------------------------------------------------------------------
    7. STUDENT SHOWCASE GALLERY (WITH FILTERS)
    -------------------------------------------------------------------------- */
@@ -795,10 +388,12 @@ a:hover {
     border-top: var(--border-width) solid var(--border-color);
     background-color: #f7f3eb; /* Slightly darker warm tint */
 }
+
 .section-header {
     max-width: 700px;
     margin: 0 auto 4rem auto;
 }
+
 .section-tag {
     font-family: var(--ff-body);
     font-weight: 700;
@@ -809,13 +404,16 @@ a:hover {
     display: block;
     margin-bottom: 0.5rem;
 }
+
 .section-title {
     font-size: 2.8rem;
     margin-bottom: 1rem;
 }
+
 .section-desc {
     color: var(--clr-text-light);
 }
+
 .gallery-filters {
     display: flex;
     justify-content: center;
@@ -823,6 +421,7 @@ a:hover {
     margin-top: 2rem;
     flex-wrap: wrap;
 }
+
 .filter-btn {
     background-color: var(--clr-card-bg);
     border: 2px solid var(--border-color);
@@ -833,10 +432,12 @@ a:hover {
     cursor: pointer;
     transition: all var(--transition-speed) ease;
 }
+
 .filter-btn.active, .filter-btn:hover {
     background-color: var(--clr-teal);
     color: var(--clr-bg);
 }
+
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -845,14 +446,17 @@ a:hover {
     margin: 0 auto;
     padding-top: 1rem;
 }
+
 .gallery-item {
     display: flex;
     flex-direction: column;
 }
+
 /* Handle fading classes for filter transitions */
 .gallery-item.hidden {
     display: none;
 }
+
 .gallery-img-wrapper {
     width: 100%;
     height: 250px;
@@ -860,15 +464,122 @@ a:hover {
     border-bottom: var(--border-width) solid var(--border-color);
     background-color: var(--clr-yellow-light);
 }
+
 .gallery-img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-speed) ease;
 }
+
 .gallery-item:hover .gallery-img-wrapper img {
     transform: scale(1.05);
 }
+
+/* Placeholder Patterns for Upcoming Works */
+.placeholder-pattern {
+    width: 100%;
+    height: 250px;
+    border-bottom: var(--border-width) solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholder-pattern::after {
+    content: 'Upcoming Project';
+    font-family: var(--ff-body);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--clr-text);
+    background-color: var(--clr-card-bg);
+    border: 2px solid var(--clr-text);
+    border-radius: var(--border-radius-sm);
+    padding: 0.35rem 0.85rem;
+    box-shadow: 2px 2px 0px var(--clr-text);
+    text-transform: uppercase;
+}
+
+.pattern-stripes {
+    background-color: var(--clr-orange-light);
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, var(--clr-orange) 10px, var(--clr-orange) 12px);
+    background-size: 20px 20px;
+    opacity: 0.8;
+}
+
+.pattern-grid {
+    background-color: var(--clr-teal-light);
+    background-image: linear-gradient(var(--clr-teal) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--clr-teal) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.8;
+}
+
+.pattern-dots {
+    background-color: var(--clr-yellow-light);
+    background-image: radial-gradient(var(--clr-yellow) 20%, transparent 20%),
+                      radial-gradient(var(--clr-yellow) 20%, transparent 20%);
+    background-size: 16px 16px;
+    background-position: 0 0, 8px 8px;
+    opacity: 0.8;
+}
+
+/* Document / PDF lists inside cards */
+.document-list {
+    list-style: none;
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.document-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: #faf6ef;
+    border: 2px solid var(--clr-text);
+    border-radius: var(--border-radius-sm);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--clr-text);
+    transition: all var(--transition-speed) ease;
+}
+
+.document-item:hover {
+    background-color: var(--clr-yellow-light);
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 2px 0px var(--clr-text);
+}
+
+.document-icon {
+    font-size: 1.2rem;
+}
+
+.files-heading {
+    font-family: var(--ff-body);
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--clr-text-light);
+    margin-top: 1.25rem;
+}
+
+.document-item.final-piece {
+    background-color: var(--clr-orange-light);
+    border-color: var(--clr-orange);
+    color: var(--clr-orange);
+}
+
+.document-item.final-piece:hover {
+    background-color: var(--clr-orange);
+    color: var(--clr-bg);
+}
+
 .gallery-info {
     padding: 1.5rem;
     flex-grow: 1;
@@ -876,6 +587,7 @@ a:hover {
     flex-direction: column;
     gap: 0.5rem;
 }
+
 .item-tag {
     align-self: flex-start;
     font-size: 0.75rem;
@@ -885,20 +597,25 @@ a:hover {
     border: 2px solid var(--border-color);
     border-radius: 12px;
 }
+
 .tag-photography { background-color: var(--clr-yellow-light); color: #8f6209; }
 .tag-graphic { background-color: var(--clr-orange-light); color: var(--clr-orange); }
+
 .item-title {
     font-size: 1.4rem;
 }
+
 .item-author {
     font-size: 0.9rem;
     color: var(--clr-text-light);
     font-style: italic;
 }
+
 .item-desc {
     font-size: 0.95rem;
     margin-top: 0.5rem;
 }
+
 /* --------------------------------------------------------------------------
    8. SYLLABUS TIMELINE
    -------------------------------------------------------------------------- */
@@ -906,6 +623,7 @@ a:hover {
     padding: 6rem 2rem;
     border-top: var(--border-width) solid var(--border-color);
 }
+
 .syllabus-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -913,12 +631,14 @@ a:hover {
     grid-template-columns: 300px 1fr;
     background-color: var(--clr-card-bg);
 }
+
 .syllabus-sidebar {
     border-right: var(--border-width) solid var(--border-color);
     background-color: #faf6ef;
     display: flex;
     flex-direction: column;
 }
+
 .week-tab {
     background: none;
     border: none;
@@ -932,37 +652,46 @@ a:hover {
     transition: background-color var(--transition-speed) ease;
     font-family: var(--ff-body);
 }
+
 .week-tab:last-child {
     border-bottom: none;
 }
+
 .week-tab.active {
     background-color: var(--clr-orange-light);
     border-left: 6px solid var(--clr-orange);
 }
+
 .week-tab:hover:not(.active) {
     background-color: #f2ebd8;
 }
+
 .tab-num {
     font-weight: 800;
     font-size: 1.2rem;
     color: var(--clr-orange);
 }
+
 .tab-label {
     font-weight: 700;
     font-size: 1rem;
     color: var(--clr-text);
 }
+
 .syllabus-content {
     padding: 2.5rem;
     min-height: 350px;
 }
+
 .week-panel {
     display: none;
 }
+
 .week-panel.active {
     display: block;
     animation: fadeIn 0.4s ease;
 }
+
 .panel-header {
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 1.5rem;
@@ -973,9 +702,11 @@ a:hover {
     flex-wrap: wrap;
     gap: 1rem;
 }
+
 .panel-header h3 {
     font-size: 1.8rem;
 }
+
 .panel-badge {
     background-color: var(--clr-teal-light);
     color: var(--clr-teal);
@@ -985,26 +716,31 @@ a:hover {
     font-weight: 700;
     font-size: 0.85rem;
 }
+
 .panel-body h4 {
     margin-bottom: 0.5rem;
     color: var(--clr-text-light);
     font-size: 1.1rem;
 }
+
 .panel-body > p {
     font-size: 1.1rem;
     margin-bottom: 2rem;
 }
+
 .panel-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
 }
+
 .panel-col {
     background-color: #fcf9f2;
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius-sm);
     padding: 1.25rem;
 }
+
 .panel-col h5 {
     font-size: 1.2rem;
     color: var(--clr-green);
@@ -1012,15 +748,18 @@ a:hover {
     border-bottom: 1px solid #e3dbce;
     padding-bottom: 0.35rem;
 }
+
 .panel-col ul {
     list-style: none;
 }
+
 .panel-col ul li {
     position: relative;
     padding-left: 1.25rem;
     margin-bottom: 0.5rem;
     font-size: 0.95rem;
 }
+
 .panel-col ul li::before {
     content: '→';
     position: absolute;
@@ -1028,6 +767,7 @@ a:hover {
     color: var(--clr-orange);
     font-weight: 800;
 }
+
 /* --------------------------------------------------------------------------
    9. RESOURCES & ANNOUNCEMENTS
    -------------------------------------------------------------------------- */
@@ -1036,26 +776,31 @@ a:hover {
     border-top: var(--border-width) solid var(--border-color);
     background-color: #faf6f0;
 }
+
 .announcement-board, .resources-board {
     padding: 2.5rem;
 }
+
 .card-title {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 0.75rem;
 }
+
 .announcements-list {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
+
 .announcements-list li {
     display: grid;
     grid-template-columns: 80px 1fr;
     gap: 1rem;
 }
+
 .announcements-list li .date {
     background-color: var(--clr-orange);
     color: var(--clr-bg);
@@ -1068,20 +813,24 @@ a:hover {
     font-weight: 700;
     font-size: 0.85rem;
 }
+
 .announcements-list li h5 {
     font-size: 1.15rem;
     margin-bottom: 0.25rem;
 }
+
 .announcements-list li p {
     font-size: 0.95rem;
     color: var(--clr-text-light);
 }
+
 .resources-list {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
 }
+
 .resources-list a {
     display: flex;
     align-items: flex-start;
@@ -1091,24 +840,29 @@ a:hover {
     border-radius: var(--border-radius-sm);
     transition: all var(--transition-speed) ease;
 }
+
 .resources-list a:hover {
     background-color: var(--clr-yellow-light);
     border-color: var(--border-color);
     color: var(--clr-text);
 }
+
 .resources-list .icon {
     font-size: 1.75rem;
     line-height: 1;
 }
+
 .link-info h5 {
     font-size: 1.1rem;
     color: var(--clr-text);
 }
+
 .link-info p {
     font-size: 0.9rem;
     color: var(--clr-text-light);
     font-weight: 400;
 }
+
 /* --------------------------------------------------------------------------
    10. FOOTER STYLES
    -------------------------------------------------------------------------- */
@@ -1119,6 +873,7 @@ a:hover {
     padding: 3rem 2rem;
     text-align: center;
 }
+
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -1126,14 +881,17 @@ a:hover {
     flex-direction: column;
     gap: 0.75rem;
 }
+
 .site-footer a {
     color: var(--clr-yellow);
     border-bottom: 2px dotted var(--clr-yellow);
 }
+
 .site-footer a:hover {
     color: var(--clr-bg);
     border-bottom: 2px solid var(--clr-bg);
 }
+
 /* --------------------------------------------------------------------------
    11. KEYFRAMES & TRANSITIONS
    -------------------------------------------------------------------------- */
@@ -1147,6 +905,7 @@ a:hover {
         transform: translateY(0);
     }
 }
+
 /* --------------------------------------------------------------------------
    12. RESPONSIVE DESIGN (MEDIA QUERIES)
    -------------------------------------------------------------------------- */
@@ -1156,28 +915,28 @@ a:hover {
         gap: 3rem;
         text-align: center;
     }
-
+    
     .hero-actions {
         justify-content: center;
     }
-
+    
     .hero-subtitle {
         margin-inline: auto;
     }
-
+    
     .hero-visual {
         order: -1; /* Image comes first on smaller screens */
     }
-
+    
     .hero-image-card {
         max-width: 450px;
         margin: 0 auto;
     }
-
+    
     .syllabus-container {
         grid-template-columns: 1fr;
     }
-
+    
     .syllabus-sidebar {
         border-right: none;
         border-bottom: var(--border-width) solid var(--border-color);
@@ -1185,37 +944,38 @@ a:hover {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
-
+    
     .week-tab {
         border-bottom: none;
         border-right: 2px solid #e3dbce;
         flex-shrink: 0;
         padding: 1rem 1.5rem;
     }
-
+    
     .week-tab.active {
         border-left: none;
         border-bottom: 6px solid var(--clr-orange);
     }
 }
+
 @media (max-width: 768px) {
     body {
         padding-top: 70px;
     }
-
+    
     .site-header {
         height: 70px;
     }
-
+    
     .hero-title {
         font-size: 2.5rem;
     }
-
+    
     /* Responsive Mobile Navigation Menu */
     .mobile-nav-toggle {
         display: block;
     }
-
+    
     .nav-menu {
         position: absolute;
         top: 70px;
@@ -1228,22 +988,22 @@ a:hover {
         transition: transform var(--transition-speed) ease-in-out;
         box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
     }
-
+    
     .nav-menu.open {
         transform: translateY(0);
     }
-
+    
     .nav-menu ul {
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
     }
-
+    
     .panel-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-
+    
     .section-title {
         font-size: 2.2rem;
     }
