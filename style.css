@@ -983,6 +983,6 @@ model-viewer {
     text-align: center;
 }
 .gallery-img-wrapper img.zoom-img {
-    transform: scale(1.6);
+    transform: scale(1.4);
     object-position: center 35%;
 }
