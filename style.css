@@ -1,10 +1,10 @@
-/* 
+/*
    ==========================================================================
    CREATIVE MEDIA & DESIGN 101 - STYLE SYSTEM
    ==========================================================================
    Theme: Retro - Mix of Vibrant and Earthy Colors (Mid-Century Modern)
    Author: Antigravity Code Assistant
-   ========================================================================== 
+   ==========================================================================
 */
 
 /* --------------------------------------------------------------------------
@@ -16,7 +16,7 @@
     --clr-card-bg: #fffdf9;      /* Crisp warm paper color for cards */
     --clr-text: #2d2420;         /* Deep chocolate charcoal (high contrast, softer than pure black) */
     --clr-text-light: #6b5c54;   /* Muted chocolate brown for secondary text */
-    
+
     /* Brand Accents */
     --clr-orange: #d96338;       /* Burnt Terracotta (Earthy Primary) */
     --clr-orange-light: #f7ede8; /* Soft Terracotta tint */
@@ -25,22 +25,22 @@
     --clr-yellow: #ebb136;       /* Mustard Yellow (Warm Highlight) */
     --clr-yellow-light: #fdf6e6; /* Soft Yellow tint */
     --clr-green: #597c56;        /* Olive Green (Earthy Accent) */
-    
+
     /* Typography */
     --ff-display: 'Fraunces', Georgia, serif;
     --ff-body: 'Space Grotesk', system-ui, sans-serif;
-    
+
     /* Borders & Offsets */
     --border-width: 3px;
     --border-color: #2d2420;
     --border-radius-sm: 8px;
     --border-radius-md: 16px;
-    
+
     /* Neo-Brutalist Shadow Styles */
     --shadow-offset-sm: 4px 4px 0px var(--clr-text);
     --shadow-offset-md: 8px 8px 0px var(--clr-text);
     --shadow-offset-hover: 2px 2px 0px var(--clr-text);
-    
+
     /* Animations */
     --transition-speed: 0.25s;
     --ease-retro: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -124,7 +124,7 @@ a:hover {
     border: var(--border-width) solid var(--border-color);
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-offset-md);
-    transition: transform var(--transition-speed) var(--ease-retro), 
+    transition: transform var(--transition-speed) var(--ease-retro),
                 box-shadow var(--transition-speed) var(--ease-retro);
     overflow: hidden;
 }
@@ -162,7 +162,7 @@ a:hover {
     border-radius: var(--border-radius-sm);
     cursor: pointer;
     box-shadow: var(--shadow-offset-sm);
-    transition: transform var(--transition-speed) var(--ease-retro), 
+    transition: transform var(--transition-speed) var(--ease-retro),
                 box-shadow var(--transition-speed) var(--ease-retro),
                 background-color var(--transition-speed) ease;
 }
@@ -877,28 +877,28 @@ a:hover {
         gap: 3rem;
         text-align: center;
     }
-    
+
     .hero-actions {
         justify-content: center;
     }
-    
+
     .hero-subtitle {
         margin-inline: auto;
     }
-    
+
     .hero-visual {
         order: -1; /* Image comes first on smaller screens */
     }
-    
+
     .hero-image-card {
         max-width: 450px;
         margin: 0 auto;
     }
-    
+
     .syllabus-container {
         grid-template-columns: 1fr;
     }
-    
+
     .syllabus-sidebar {
         border-right: none;
         border-bottom: var(--border-width) solid var(--border-color);
@@ -906,14 +906,14 @@ a:hover {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
-    
+
     .week-tab {
         border-bottom: none;
         border-right: 2px solid #e3dbce;
         flex-shrink: 0;
         padding: 1rem 1.5rem;
     }
-    
+
     .week-tab.active {
         border-left: none;
         border-bottom: 6px solid var(--clr-orange);
@@ -924,20 +924,20 @@ a:hover {
     body {
         padding-top: 70px;
     }
-    
+
     .site-header {
         height: 70px;
     }
-    
+
     .hero-title {
         font-size: 2.5rem;
     }
-    
+
     /* Responsive Mobile Navigation Menu */
     .mobile-nav-toggle {
         display: block;
     }
-    
+
     .nav-menu {
         position: absolute;
         top: 70px;
@@ -950,23 +950,35 @@ a:hover {
         transition: transform var(--transition-speed) ease-in-out;
         box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
     }
-    
+
     .nav-menu.open {
         transform: translateY(0);
     }
-    
+
     .nav-menu ul {
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
     }
-    
+
     .panel-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-    
+
     .section-title {
         font-size: 2.2rem;
     }
+}
+model-viewer {
+    width: 100%;
+    height: 500px; /* Adjust based on your design */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    --poster-color: transparent;
+}
+
+.model-container {
+    padding: 2rem 5%;
+    text-align: center;
 }

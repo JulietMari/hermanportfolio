@@ -15,7 +15,7 @@
 
     <!-- Link to the external stylesheet -->
     <link rel="stylesheet" href="style.css">
-</head>
+</head<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 <body>
 
     <!-- 1. HEADER & NAVIGATION -->
@@ -119,7 +119,17 @@
 
             <!-- Project 2 Placeholder -->
             <div class="gallery-item retro-card" data-category="project-2">
-                <div class="placeholder-pattern pattern-dots"></div>
+                <div class=""model-container">
+    <h2>3D Artifact Study</h2>
+    <model-viewer
+        src="path/to/your-model.glb"
+        poster="path/to/poster-image.png"
+        alt="A 3D model of a creative artifact"
+        shadow-intensity="1"
+        camera-controls
+        auto-rotate
+        ar>
+    </model-viewer>"></div>
                 <div class="gallery-info">
                     <span class="item-tag tag-photography">Project 02</span>
                     <h4 class="item-title">3D: Quasi-Object</h4>
