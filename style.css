@@ -982,3 +982,7 @@ model-viewer {
     padding: 2rem 5%;
     text-align: center;
 }
+.gallery-img-wrapper img.zoom-img {
+    transform: scale(1.6);
+    object-position: center 35%;
+}
