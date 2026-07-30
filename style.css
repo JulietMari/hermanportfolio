@@ -980,26 +980,4 @@ a:hover {
 
     .panel-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .section-title {
-        font-size: 2.2rem;
-    }
-}
-model-viewer {
-    width: 100%;
-    height: 500px; /* Adjust based on your design */
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    --poster-color: transparent;
-}
-
-.model-container {
-    padding: 2rem 5%;
-    text-align: center;
-}
-.gallery-img-wrapper img.zoom-img {
-    transform: scale(1.6);
-    object-position: center 35%;
-}
+        gap: 1rem
