@@ -44,14 +44,16 @@
             </div>
 
             <!-- Hero Retro Graphic Overlay -->
-            <div class="hero-visual">
-                <div class="retro-card hero-image-card">
-                    <div class="placeholder-pattern pattern-dots" style="width: 320px; height: 320px; border-bottom: none;"></div>
-                    <div class="card-tag">Exhibition</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="hero-visual">
+      <div class="retro-card hero-image-card">
+          <div class="hero-carousel" style="width: 320px; height: 320px; border-bottom: none; position: relative; overflow: hidden;">
+              <img src="assets/final.jpg" alt="Uncanny Valley" class="hero-slide active" data-tag="Uncanny Valley">
+              <img src="assets/guitarfinal.png" alt="Quasi-Object guitar" class="hero-slide" data-tag="Quasi-Object">
+              <video src="assets/astrollthroughbostondraft3.mp4" class="hero-slide" data-tag="Boston Walkthrough" muted loop playsinline></video>
+          </div>
+          <div class="card-tag" id="hero-tag">Uncanny Valley</div>
+      </div>
+  </div>
 
 
 
@@ -173,5 +175,34 @@
 
     <!-- JavaScript script for interactive filters and syllabus navigation -->
     <script src="app.js"></script>
+    <script>
+(function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const tagEl = document.getElementById('hero-tag');
+    let current = 0;
+    const clipDuration = 3000; // how long the video clip plays before moving on
+
+    function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        const slide = slides[index];
+        slide.classList.add('active');
+        tagEl.textContent = slide.dataset.tag;
+
+        if (slide.tagName === 'VIDEO') {
+            slide.currentTime = 0;
+            slide.play();
+        }
+    }
+
+    function nextSlide() {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+        const delay = slides[current].tagName === 'VIDEO' ? clipDuration : 4000;
+        setTimeout(nextSlide, delay);
+    }
+
+    setTimeout(nextSlide, 4000); // start the rotation after first image's dwell time
+})();
+</script>
 </body>
 </html>

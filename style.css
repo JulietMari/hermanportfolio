@@ -62,7 +62,7 @@ html {
 
 body {
     background-color: var(--clr-bg);
-    background-image: 
+    background-image:
         linear-gradient(90deg, rgba(45, 36, 32, 0.08) 50%, transparent 50%),
         linear-gradient(rgba(45, 36, 32, 0.08) 50%, transparent 50%);
     background-size: 48px 48px;
@@ -1002,4 +1002,15 @@ model-viewer {
 .gallery-img-wrapper img.zoom-img {
     transform: scale(1.6);
     object-position: center 35%;
+}
+.hero-slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.hero-slide.active {
+    opacity: 1;
 }
