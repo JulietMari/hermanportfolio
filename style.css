@@ -480,6 +480,22 @@ a:hover {
     transform: scale(1.05);
 }
 
+.gallery-video-wrapper {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-bottom: var(--border-width) solid var(--border-color);
+    background-color: var(--clr-text);
+    position: relative;
+}
+
+.gallery-video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 /* Placeholder Patterns for Upcoming Works */
 .placeholder-pattern {
     width: 100%;
@@ -562,6 +578,7 @@ a:hover {
 
 .tag-photography { background-color: var(--clr-yellow-light); color: #8f6209; }
 .tag-graphic { background-color: var(--clr-orange-light); color: var(--clr-orange); }
+.tag-4d { background-color: var(--clr-teal-light); color: var(--clr-teal); }
 
 .item-title {
     font-size: 1.4rem;
