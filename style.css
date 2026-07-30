@@ -63,8 +63,8 @@ html {
 body {
     background-color: var(--clr-bg);
     background-image:
-        linear-gradient(rgba(212, 160, 23, 0.25) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(212, 160, 23, 0.25) 1px, transparent 1px);
+      linear-gradient(rgba(212, 160, 23, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(224, 122, 63, 0.3) 1px, transparent 1px);
     background-size: 40px 40px;
     color: var(--clr-text);
     font-family: var(--ff-body);
