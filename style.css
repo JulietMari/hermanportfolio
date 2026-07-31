@@ -173,11 +173,11 @@ a:hover {
 }
 
 .btn-primary {
-    background-color: #2b6ca3;
-    color: #f5eedf;
+    background-color: var(--clr-orange);
+    color: var(--clr-bg);
 }
 .btn-primary:hover {
-    background-color: #1f4f7a; /* darker retro blue */
+    background-color: #c2522a;
 }
 
 .btn-secondary {
@@ -279,7 +279,7 @@ a:hover {
     padding: 4rem 2rem;
     position: relative;
     overflow: hidden;
-    background-color: #e0a385;
+    background-color: ##d97757;
 }
 
 .hero-container {
@@ -313,8 +313,7 @@ a:hover {
 }
 
 .hero-actions {
-    display: flex;
-    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 /* Hero image offset layout */
