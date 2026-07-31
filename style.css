@@ -277,12 +277,12 @@ a:hover {
    5. HERO SECTION
    -------------------------------------------------------------------------- */
    .hero-section {
-     padding: 4rem 2rem;
-     position: relative;
-     overflow: hidden;
-     background-color: #6b4f3f;
- }
-   }
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background-color: #d9a878;
+}
+  
 .hero-container {
     max-width: 1200px;
     margin: 0 auto;
