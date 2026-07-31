@@ -173,12 +173,11 @@ a:hover {
 }
 
 .btn-primary {
-    background-color: var(--clr-orange);
-    color: var(--clr-bg);
+    background-color: #2b6ca3;
+    color: #f5eedf;
 }
-
 .btn-primary:hover {
-    background-color: #c2522a; /* Slightly darker terracotta */
+    background-color: #1f4f7a; /* darker retro blue */
 }
 
 .btn-secondary {
@@ -277,12 +276,12 @@ a:hover {
    5. HERO SECTION
    -------------------------------------------------------------------------- */
    .hero-section {
-    padding: 4rem 2rem;
-    position: relative;
-    overflow: hidden;
-    background-color: #d9a878;
-}
-  
+     padding: 4rem 2rem;
+     position: relative;
+     overflow: hidden;
+     background-color: #e8641c;
+ }
+
 .hero-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -310,10 +309,7 @@ a:hover {
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
-    color: var(--clr-text-light);
-    margin-bottom: 2rem;
-    max-width: 600px;
+    color: #f5eedf;
 }
 
 .hero-actions {
