@@ -276,12 +276,12 @@ a:hover {
 /* --------------------------------------------------------------------------
    5. HERO SECTION
    -------------------------------------------------------------------------- */
-.hero-section {
-    padding: 4rem 2rem;
-    position: relative;
-    overflow: hidden;
-}
-
+   .hero-section {
+       padding: 4rem 2rem;
+       position: relative;
+       overflow: hidden;
+       background-color: #f5eedf;
+   }
 .hero-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -390,10 +390,10 @@ a:hover {
 /* --------------------------------------------------------------------------
    7. STUDENT SHOWCASE GALLERY (WITH FILTERS)
    -------------------------------------------------------------------------- */
-.gallery-section {
+..gallery-section {
     padding: 6rem 2rem;
     border-top: var(--border-width) solid var(--border-color);
-    background-color: #f7f3eb; /* Slightly darker warm tint */
+    background-color: rgba(247, 243, 235, 0.5);
 }
 
 .section-header {
